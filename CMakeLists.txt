@@ -9,7 +9,27 @@ include(libigl)
 # Enable the target igl::glfw
 igl_include(glfw)
 
+include(FetchContent)
+FetchContent_Declare(
+  tinyad
+  GIT_REPOSITORY https://github.com/patr-schm/tinyad.git
+  GIT_TAG 75093e14ef0d7bb39657c5f3b2aba1251afaa38c
+)
+#FetchContent_MakeAvailable(tinyad)
+
+FetchContent_GetProperties(tinyad)
+if(NOT tinyad_POPULATED)
+  message(STATUS "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+  # Fetch the content using previously declared details
+  FetchContent_Populate(tinyad)
+  message(STATUS "tinyad_SOURCE_DIR: ${tinyad_SOURCE_DIR}")
+  message(STATUS "tinyad_BINARY_DIR: ${tinyad_BINARY_DIR}")
+  add_subdirectory(${tinyad_SOURCE_DIR} ${tinyad_BINARY_DIR})
+endif()
+
 # Add your project files
 file(GLOB SRC_FILES *.cpp)
 add_executable(${PROJECT_NAME} ${SRC_FILES})
-target_link_libraries(${PROJECT_NAME} PUBLIC igl::glfw)
+target_link_libraries(${PROJECT_NAME} PUBLIC igl::glfw TinyAD)
+# tinyad needs C++17 (not sure if that means this project does too)
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
