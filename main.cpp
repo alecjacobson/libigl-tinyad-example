@@ -18,6 +18,7 @@
 
 #include <igl/opengl/glfw/Viewer.h>
 #include <thread>
+#include <mutex>
 
 /**
  * Compute tutte embedding with boundary on circle.
