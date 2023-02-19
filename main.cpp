@@ -18,6 +18,7 @@
 
 #include <igl/opengl/glfw/Viewer.h>
 #include <thread>
+#include <mutex>
 
 /**
  * Compute tutte embedding with boundary on circle.
@@ -47,7 +48,7 @@ int main()
   // Read mesh and compute Tutte embedding
   Eigen::MatrixXd V; // #V-by-3 3D vertex positions
   Eigen::MatrixXi F; // #F-by-3 indices into V
-  igl::readOBJ("../armadillo_cut_low.obj", V, F);
+  igl::readOBJ(std::string(SOURCE_PATH) + "/armadillo_cut_low.obj", V, F);
   Eigen::MatrixXd P = tutte_embedding(V, F); // #V-by-2 2D vertex positions
                                              //
   bool redraw = false;
