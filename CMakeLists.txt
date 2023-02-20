@@ -19,7 +19,6 @@ FetchContent_Declare(
 
 FetchContent_GetProperties(tinyad)
 if(NOT tinyad_POPULATED)
-  message(STATUS "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
   # Fetch the content using previously declared details
   FetchContent_Populate(tinyad)
   message(STATUS "tinyad_SOURCE_DIR: ${tinyad_SOURCE_DIR}")
