@@ -55,6 +55,7 @@ x = [
   xₙ
   yₙ
   zₙ
+  ]
 ```
 
 And use a corresponding ordering for gradients and Hessians.
